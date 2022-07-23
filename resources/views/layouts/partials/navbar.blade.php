@@ -214,7 +214,7 @@
             <!-- Start user dropdown button  =================================== -->
             <a class="nav-link dropdown-toggl" href="#" id="user-dropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
-              <img src="{{vite_asset("resources/template/assets/images/user/baky.jpg")}}" alt="">
+              <img src="{{vite_asset("resources/template/assets/images/user/user.png")}}" alt="">
 
               <!-- badge-circle Active-->
               <span class="badge-circle active"></span>
@@ -224,31 +224,48 @@
             <!-- Start user dropdown menu  =================================== -->
             <ul class="dropdown-menu" aria-labelledby="user-dropdown">
               <li>
-                <a class="dropdown-item profile" href="./profile.html">
-                  <img src="{{vite_asset("resources/template/assets/images/user/baky.jpg")}}" alt="">
+                <a class="dropdown-item profile" href="#">
+                  <img src="{{vite_asset("resources/template/assets/images/user/user.png")}}" alt="">
                   <div>
-                    <h5>baky billah khan pathan</h5>
+                    <h5>{{ auth()->user()->name }}</h5>
                     <p>Admin</p>
                   </div>
                 </a>
               </li>
+
               <li>
-                <a class="dropdown-item" href="./settings.html">
-                  <i class="bi bi-gear"></i>
-                  <span>Settings & Privacy</span>
+                @can('user.index')
+                 <a class="dropdown-item" href="{{ route('user.index') }}">
+                  <i class="bi bi-person"></i>
+                  <span>user</span>
+                </a>
+                @endcan
+              </li>
+
+              <li>
+                @can('role.index')
+                  <a class="dropdown-item" href="{{ route('role.index') }}">
+                  <i class="bi bi-chevron-expand"></i>
+                  <span>Role</span>
+                </a>
+                @endcan
+              </li>
+
+              <li>
+                <a class="dropdown-item" href="{{ route('password.change') }}">
+                  <i class="bi bi-key"></i>
+                  <span>Change password</span>
                 </a>
               </li>
+
               <li>
-                <a class="dropdown-item" href="./support.html">
-                  <i class="bi bi-question-circle"></i>
-                  <span>Help & Support</span>
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                   <i class="bi bi-box-arrow-left"></i>
                   <span>Logout</span>
                 </a>
+                <form id="logout-form" class="d-none" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                </form>
               </li>
             </ul>
             <!-- End user dropdown menu  =================================== -->

@@ -32,9 +32,13 @@
                 @include('layouts.partials.navbar')
                 <!-- End navigation =================================== -->
 
-
                 <!--start content -->
                 <div class="container-fluid mt-3 mb-5">
+                    {{-- message handler area --}}
+                     <div class="col-12 mt-2">
+                        <x-alert-handler/>
+                    </div>
+
                     {{$slot}}
 
                 </div>
@@ -42,7 +46,6 @@
 
         </main>
         <!--end start main -->
-
 
 
         <!-- Javascript -->

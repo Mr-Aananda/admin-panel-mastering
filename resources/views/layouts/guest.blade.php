@@ -20,6 +20,7 @@
     <body>
                 <!-- main-bar -->
         <main class="authentication-wrap">
+
             {{$slot}}
 
         </main>

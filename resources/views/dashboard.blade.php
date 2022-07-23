@@ -1,6 +1,7 @@
 @section('title', 'Dashboard')
 
 <x-app-layout>
+    <x-alert message="You are successfully logged in!" type="success" dismissable/>
 
      <div class="row g-3">
         <div class="col-md-3">

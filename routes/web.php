@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DemoController;
 use App\Http\Controllers\PasswordChangeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -25,7 +26,7 @@ Route::prefix('dashboard')
     ->group(function () {
         // dashboard
         Route::get('/', [DashboardController::class, 'index'])
-            ->name('dashboard')
+            ->name('dashboard.index')
             ->middleware('permission.remove'); // remove permission to access dashboard
 
         // Change password
@@ -58,24 +59,33 @@ Route::prefix('dashboard')
         // role resource controller
         Route::resource('role', RoleController::class);
 
+        // roles
+        Route::prefix('demo')
+            ->name('demo.')
+            ->group(function () {
+                // custom role routes
+            });
+
+        // role resource controller
+        Route::resource('demo', DemoController::class);
 
         // Remove below routes
         // They are dummy routes
-        Route::get('/test', function () {
-        })->name('test.index');
+        // Route::get('/test', function () {
+        // })->name('test.index');
 
-        Route::get('/test/index/child1', function () {
-        })->name('test.index.child1');
+        // Route::get('/test/index/child1', function () {
+        // })->name('test.index.child1');
 
-        Route::get('/test/index/child1/newchild-index', function () {
-        })->name('test.index.child1.newchild-index');
+        // Route::get('/test/index/child1/newchild-index', function () {
+        // })->name('test.index.child1.newchild-index');
 
-        Route::get('/test/index/child1/new-child-one', function () {
-        })->name('test.index.child1.newchild-one');
+        // Route::get('/test/index/child1/new-child-one', function () {
+        // })->name('test.index.child1.newchild-one');
 
-        Route::get('/test/index/child1/new-child-two', function () {
-        })->name('test.index.child1.newchild-two');
-    });
+        // Route::get('/test/index/child1/new-child-two', function () {
+        // })->name('test.index.child1.newchild-two');
+});
 
 
 require __DIR__ . '/auth.php';
