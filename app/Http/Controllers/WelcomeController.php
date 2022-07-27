@@ -9,6 +9,6 @@ class WelcomeController extends Controller
     public function root()
     {
         return redirect()
-            ->route('dashboard');
+            ->route('dashboard.index');
     }
 }
