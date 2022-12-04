@@ -35,9 +35,21 @@
                 <!--start content -->
                 <div class="container-fluid mt-3 mb-5">
                     {{-- message handler area --}}
-                     <div class="col-12 mt-2">
+                     {{-- <div class="col-12 mt-2">
                         <x-alert-handler/>
+                    </div> --}}
+
+                     {{-- message handler area --}}
+                    <div class="col-12 mt-2">
+                         @if(session()->has('success'))
+                            <x-alert-components :messages="session()->get('success')"/>
+                        @else
+                            @if ($errors->any())
+                                <x-alert-components type="danger" :messages="$errors->all()"/>
+                            @endif
+                        @endif
                     </div>
+
 
                     {{$slot}}
 
